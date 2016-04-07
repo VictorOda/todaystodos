@@ -1,6 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 
+import { ToDos } from '../../api/todos.js';
+
 export default class ToDo extends Component {
+
+    toggleChecked() {
+        ToDos.update(this.props.todo._id, {
+            $set: { checked: !this.props.todo.checked }
+        });
+    }
+
     render () {
         const listItemStyle = {
             paddingTop: 6,
@@ -11,12 +20,21 @@ export default class ToDo extends Component {
         const labelStyle = {
             verticalAlign: "middle"
         };
+        const textStyleCompleted = {
+            textDecoration: "line-through"
+        };
+        const textStyleIncomplete = {
+        };
+
+        const isChecked = this.props.todo.checked ? "checked" : "";
+        const textStyle = this.props.todo.checked ? textStyleCompleted : textStyleIncomplete;
+
         return (
             <li className="item" style={listItemStyle}>
                 <label className="checkbox" style={labelStyle}>
-                    <input type="checkbox" />
+                    <input type="checkbox"  readOnly checked={isChecked} onClick={this.toggleChecked.bind(this)}/>
                 </label>
-                <span className="text">{this.props.todo.text}</span>
+                <span className="text" style={textStyle}>{this.props.todo.text}</span>
             </li>
         );
     }

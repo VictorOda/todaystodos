@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Button from '../components/Button.jsx';
+import ToDoList from '../components/ToDoList.jsx';
 
 export default class Content extends Component {
     render () {
@@ -8,7 +9,7 @@ export default class Content extends Component {
             <div className="view">
                 <div className="scroll-content ionic-scroll">
                     <div className="content overflow-scroll has-header">
-                        <h1 className="text-center">Content</h1>
+                        <ToDoList />
                         <Button value="It's A New Day!  "/>
                     </div>
                 </div>

@@ -15,17 +15,11 @@ export default class ToDoList extends Component {
         };
     }
 
-    getToDos() {
-        return [
-            { _id:1, text: 'Teste 1'},
-            { _id:2, text: 'Teste 2'},
-            { _id:3, text: 'Teste 3'},
-            { _id:4, text: 'Teste 4'}
-        ];
-    }
-
-    addToDo(todo) {
-        this.setState({todo});
+    addToDo(text) {
+        ToDos.insert({
+            text,
+            createdAt: new Date()
+        });
     }
 
     renderToDos() {
@@ -50,6 +44,6 @@ ToDoList.PropTypes = {
 
 export default createContainer(() => {
     return {
-        todos: ToDos.find({}).fetch()
+        todos: ToDos.find({}, { sort: { createdAt: -1 } }).fetch()
     };
 }, ToDoList);

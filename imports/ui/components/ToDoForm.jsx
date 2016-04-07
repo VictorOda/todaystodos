@@ -6,7 +6,7 @@ export default class ToDoForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const newTodo = ReactDOM.findDOMNode(this.refs.textInput);
-        this.props.addToDo(newTodo.value);
+        this.props.addToDo(newTodo.value.trim());
         newTodo.value = '';
     }
 

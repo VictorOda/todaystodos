@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class ToDo extends Component {
     render () {
@@ -16,9 +16,12 @@ export default class ToDo extends Component {
                 <label className="checkbox" style={labelStyle}>
                     <input type="checkbox" />
                 </label>
-                <span className="text">{this.props.title}</span>
+                <span className="text">{this.props.todo.text}</span>
             </li>
-
         );
     }
 }
+
+ToDo.PropTypes = {
+    todo: PropTypes.object.isRequired
+};

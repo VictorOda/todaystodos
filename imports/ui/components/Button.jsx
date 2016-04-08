@@ -5,7 +5,7 @@ export default class Button extends Component {
         return (
             <div className="text-center">
                 <button className="button button-energized icon-right ion-happy"
-                        onClick={this.props.newDay()}>
+                        onClick={this.props.newDay.bind(this)}>
                     {this.props.value }
                 </button>
             </div>

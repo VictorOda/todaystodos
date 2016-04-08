@@ -14,7 +14,6 @@ export default class ToDoList extends Component {
     // Clear list of checked todos
     newDay() {
         Meteor.call("clearList");
-        console.log("ClearList");
     }
 
     addToDo(text) {
@@ -37,9 +36,8 @@ export default class ToDoList extends Component {
                 <ul className="list">
                     <ToDoForm addToDo={this.addToDo.bind(this)}/>
                     {this.renderToDos()}
-                    <Button value="It's A New Day!" newDay={this.newDay.bind(this)}/>
                 </ul>
-
+                <Button value="It's A New Day!" newDay={this.newDay.bind(this)}/>
             </div>
         );
     }

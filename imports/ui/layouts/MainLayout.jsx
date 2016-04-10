@@ -1,15 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Header from './Header.jsx';
 import Content from './Content.jsx';
 
-export default class MainLayout extends Component {
+const propTypes = {
+    headerTitle: PropTypes.string.isRequired,
+};
+
+class MainLayout extends Component {
     render() {
         return (
             <div className="ionic-body">
-                <Header title="Today's To-Dos"/>
-                <Content />
+                <Header title={this.props.headerTitle}/>
+                <Content>
+                    {this.props.children}
+                </Content>
             </div>
         );
     }
 }
+
+MainLayout.propTypes = propTypes;
+
+export default  MainLayout;

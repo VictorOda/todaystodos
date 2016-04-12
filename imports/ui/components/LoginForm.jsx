@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Accounts } from 'meteor/accounts-base';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 export default class ToDoForm extends Component {
 
@@ -9,18 +10,15 @@ export default class ToDoForm extends Component {
         e.preventDefault();
         const email = this.refs.email.value.trim();
         const password = this.refs.password.value.trim();
-        //
-        // Accounts.createUser({
-        //     mail: email,
-        //     password: password
-        // });
-        console.log(email);
-        console.log(password);
+
         Accounts.createUser({email: email, password: password}, function(err) {
-          if (err)
-            console.log(err);
-          else
-            console.log('success!');
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('success!');
+                const userId = Meteor.userId();
+                browserHistory.push('/');
+            }
         });
     }
 
@@ -30,10 +28,13 @@ export default class ToDoForm extends Component {
         const email = this.refs.email.value.trim();
         const password = this.refs.password.value.trim();
         Meteor.loginWithPassword(email, password, (err) => {
-            if (err)
-              console.log(err);
-            else
-              console.log('success!');
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('success!');
+                const userId = Meteor.userId();
+                browserHistory.push('/');
+            }
         });
     }
 

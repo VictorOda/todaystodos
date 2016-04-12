@@ -6,5 +6,7 @@ Meteor.startup(() => {
 });
 
 Meteor.methods({
-
+    createList: function() {
+        
+    }
 });

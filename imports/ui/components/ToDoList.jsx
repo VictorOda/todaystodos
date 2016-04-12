@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import Button from './Button.jsx';
 import ToDoForm from './ToDoForm.jsx';
@@ -11,17 +12,18 @@ import { ToDos } from '../../api/todos.js';
 
 export default class ToDoList extends Component {
 
+    componentDidMount() {
+        if(!Meteor.userId())
+            browserHistory.push('/login');
+    }
+
     // Clear list of checked todos
     newDay() {
-        Meteor.call("clearList");
+        Meteor.call('clearList');
     }
 
     addToDo(text) {
-        ToDos.insert({
-            text,
-            checked: false,
-            createdAt: new Date()
-        });
+        Meteor.call('todos.insert', text);
     }
 
     renderToDos() {
@@ -49,6 +51,6 @@ ToDoList.PropTypes = {
 
 export default createContainer(() => {
     return {
-        todos: ToDos.find({}, { sort: { checked: false, createdAt: 1 } }).fetch()
+        todos: ToDos.find({owner: Meteor.userId()}, { sort: { checked: false, createdAt: 1 } }).fetch()
     };
 }, ToDoList);

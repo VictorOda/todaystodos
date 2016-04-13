@@ -27,6 +27,13 @@ Meteor.methods({
         ToDos.remove(todoId);
     },
 
+    'todos.newDay'() {
+        ToDos.find({ owner: Meteor.userId(), checked: true}).fetch().map((todo) => {
+            ToDos.remove(todo._id);
+        });
+
+    },
+
     'todos.setChecked'(todoId, setChecked) {
         check(todoId, String);
         check(setChecked, Boolean);

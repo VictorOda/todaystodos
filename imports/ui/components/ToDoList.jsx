@@ -12,14 +12,14 @@ import { ToDos } from '../../api/todos.js';
 
 export default class ToDoList extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
         if(!Meteor.userId())
             browserHistory.push('/login');
     }
 
     // Clear list of checked todos
     newDay() {
-        Meteor.call('clearList');
+        Meteor.call('todos.newDay');
     }
 
     addToDo(text) {

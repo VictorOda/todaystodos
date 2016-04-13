@@ -23,7 +23,8 @@ export default class ToDoList extends Component {
     }
 
     addToDo(text) {
-        Meteor.call('todos.insert', text);
+        // ToDo is not on the ALL list
+        Meteor.call('todos.insert', text, false);
     }
 
     renderToDos() {

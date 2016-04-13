@@ -5,8 +5,9 @@ import { check } from 'meteor/check';
 export const ToDos = new Mongo.Collection('todos');
 
 Meteor.methods({
-    'todos.insert'(text) {
+    'todos.insert'(text, isAll) {
         check(text, String);
+        check(isAll, Boolean);
 
         // Make sure the user is logged in before inserting a task
         if (!Meteor.userId()) {
@@ -17,6 +18,7 @@ Meteor.methods({
             text,
             checked: false,
             owner: Meteor.userId(),
+            isAll: isAll,
             createdAt: new Date()
         });
     },
@@ -28,16 +30,13 @@ Meteor.methods({
     },
 
     'todos.newDay'() {
-        ToDos.find({ owner: Meteor.userId(), checked: true}).fetch().map((todo) => {
+        ToDos.find({ owner: Meteor.userId(), checked: true, isAll: false}).fetch().map((todo) => {
             ToDos.remove(todo._id);
         });
-
     },
 
-    'todos.setChecked'(todoId, setChecked) {
-        check(todoId, String);
-        check(setChecked, Boolean);
-
-        ToDos.update(todoId, { $set: { checked: setChecked } });
+    'todos.toggleChecked'(todo) {
+        check(todo, Object);
+        ToDos.update(todo._id, { $set: { checked: !todo.checked } });
     }
 });

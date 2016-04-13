@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Component, PropTypes } from 'react';
 
 import { ToDos } from '../../api/todos.js';
@@ -5,9 +6,10 @@ import { ToDos } from '../../api/todos.js';
 export default class ToDo extends Component {
 
     toggleChecked() {
-        ToDos.update(this.props.todo._id, {
-            $set: { checked: !this.props.todo.checked }
-        });
+        // ToDos.update(this.props.todo._id, {
+        //     $set: { checked: !this.props.todo.checked }
+        // });
+        Meteor.call('todos.toggleChecked', this.props.todo);
     }
 
     render () {

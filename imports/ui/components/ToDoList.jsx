@@ -7,6 +7,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Button from './Button.jsx';
 import ToDoForm from './ToDoForm.jsx';
 import ToDo from './ToDo.jsx';
+import AllToDo from './AllToDo.jsx';
 
 import { ToDos } from '../../api/todos.js';
 
@@ -23,24 +24,41 @@ export default class ToDoList extends Component {
     }
 
     addToDo(text) {
-        // ToDo is not on the ALL list
-        Meteor.call('todos.insert', text, false);
+        // ToDo is on the ALL list
+        Meteor.call('todos.insert', text, true);
     }
 
-    renderToDos() {
-        return this.props.todos.map((todo) => (
-            <ToDo key={todo._id} todo={todo} />
-        ));
+
+
+    renderTodaysToDos() {
+        return this.props.todos.map((todo) => {
+            if (!todo.isAll)
+                return <ToDo key={todo._id} todo={todo}/>;
+            }
+        );
+    }
+
+    renderAllToDos() {
+        return this.props.todos.map((todo) => {
+            if (todo.isAll)
+                return <AllToDo key={todo._id} todo={todo}/>;
+            }
+        );
     }
 
     render() {
         return (
             <div>
                 <ul className="list">
-                    <ToDoForm addToDo={this.addToDo.bind(this)}/>
-                    {this.renderToDos()}
+                    { this.renderTodaysToDos() }
                 </ul>
-                <Button value="It's A New Day!" newDay={this.newDay.bind(this)}/>
+                <Button value="It's A New Day!" newDay={ this.newDay.bind(this) }/>
+                <br/>
+                <ul className="list">
+                    <div className="item item-divider text-center">ALL</div>
+                    <ToDoForm addToDo={ this.addToDo.bind(this) }/>
+                    { this.renderAllToDos() }
+                </ul>
             </div>
         );
     }

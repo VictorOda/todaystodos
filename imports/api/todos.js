@@ -23,20 +23,32 @@ Meteor.methods({
         });
     },
 
-    'todos.remove'(todoId) {
-        check(todoId, String);
-
-        ToDos.remove(todoId);
+    'todos.remove'(todo) {
+        check(todo, Object);
+        console.log('remove todo');
+        ToDos.remove(todo._id);
     },
 
     'todos.newDay'() {
+        // Remove completed todos
         ToDos.find({ owner: Meteor.userId(), checked: true, isAll: false}).fetch().map((todo) => {
             ToDos.remove(todo._id);
+        });
+        // Return non completed todos to All's list
+        ToDos.find({ owner: Meteor.userId(), checked: false, isAll: false}).fetch().map((todo) => {
+            ToDos.update(todo._id, { $set: { isAll: true } });
         });
     },
 
     'todos.toggleChecked'(todo) {
         check(todo, Object);
         ToDos.update(todo._id, { $set: { checked: !todo.checked } });
+    },
+
+    // Transfer todos from the All's list to the Today's list
+    'todos.transfer'(todo) {
+        check(todo, Object);
+        console.log('transfer todo');
+        ToDos.update(todo._id, { $set: { isAll: false } });
     }
 });

@@ -28,7 +28,13 @@ export default class ToDoList extends Component {
         Meteor.call('todos.insert', text, true);
     }
 
+    transferToDo(todo) {
+        Meteor.call('todos.transfer', todo);
+    }
 
+    removeToDo(todo) {
+        Meteor.call('todos.remove', todo);
+    }
 
     renderTodaysToDos() {
         return this.props.todos.map((todo) => {
@@ -41,7 +47,11 @@ export default class ToDoList extends Component {
     renderAllToDos() {
         return this.props.todos.map((todo) => {
             if (todo.isAll)
-                return <AllToDo key={todo._id} todo={todo}/>;
+                return <AllToDo
+                            key={ todo._id }
+                            todo={ todo }
+                            removeToDo={ this.removeToDo.bind(this) }
+                            transferToDo={ this.transferToDo.bind(this) } />;
             }
         );
     }

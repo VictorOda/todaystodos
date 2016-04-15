@@ -34,10 +34,12 @@ export default class AllToDo extends Component {
                 <span className="text" style={textStyle}>{this.props.todo.text}</span>
                 <a
                     className="button button-small button-icon icon ion-plus-circled"
-                    style={ buttonStylePlus } />
+                    style={ buttonStylePlus }
+                    onClick={ this.props.transferToDo.bind(this, this.props.todo) } />
                 <a
                     className="button button-small button-icon icon ion-minus-circled"
-                    style={ buttonStyleMinus } />
+                    style={ buttonStyleMinus }
+                    onClick={ this.props.removeToDo.bind(this, this.props.todo) } />
             </li>
         );
     }

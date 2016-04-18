@@ -59,16 +59,28 @@ export default class ToDoList extends Component {
     render() {
         return (
             <div>
-                <ul className="list">
-                    { this.renderTodaysToDos() }
-                </ul>
+                <div className="card">
+                    <div className="card-header">Today</div>
+                    <div className="card-content">
+                        <div className="list-block">
+                            <ul>
+                                { this.renderTodaysToDos() }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 <Button value="It's A New Day!" newDay={ this.newDay.bind(this) }/>
-                <br/>
-                <ul className="list">
-                    <div className="item item-divider text-center">ALL</div>
-                    <ToDoForm addToDo={ this.addToDo.bind(this) }/>
-                    { this.renderAllToDos() }
-                </ul>
+                <div className="card">
+                    <div className="card-header">All</div>
+                    <div className="card-content">
+                        <div className="list-block">
+                            <ul>
+                                <ToDoForm addToDo={ this.addToDo.bind(this) }/>
+                                { this.renderAllToDos() }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

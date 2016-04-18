@@ -10,4 +10,6 @@ Meteor.startup(() => {
 
     render(renderRoutes(), root);
 
+    // Initialize app
+    var myApp = new Framework7();
 });

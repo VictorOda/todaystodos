@@ -47,43 +47,50 @@ export default class ToDoForm extends Component {
     render () {
 
         const buttonStyle = {
-            width: "50%",
             maxWidth: "300px",
             margin: "5px",
             fontWeight: "bold",
+            textAlign: "center",
+            lineHeight: "45px"
         };
 
         return (
-            <form className="login">
-                <div className="list list-inset">
-                    <label className="item item-input">
-                        <input ref="email" type="text" placeholder="E-mail" />
-                    </label>
-                    <label className="item item-input">
-                        <input ref="password" type="password" placeholder="Password" />
-                    </label>
-                </div>
-                <div className="row text-center">
-                    <div className="col">
-                        <button
-                            className="button button button-energized"
-                            style={buttonStyle}
-                            onClick={this.login.bind(this)}>
-                            Sign In
-                        </button>
+            <div className="content-block">
+                <form className="login">
+                    <div className="list list-inset">
+                        <label className="item item-input">
+                            <input ref="email" type="text" placeholder="E-mail" />
+                        </label>
+                        <label className="item item-input">
+                            <input ref="password" type="password" placeholder="Password" />
+                        </label>
                     </div>
-                </div>
-                <div className="row text-center">
-                    <div className="col">
-                        <button
-                            className="button button button-energized"
-                            style={buttonStyle}
-                            onClick={this.register.bind(this)}>
-                            Register
-                        </button>
+                    <div className="row">
+                        <div className="col-25" />
+                        <div className="col-50">
+                            <a
+                                className="button button-fill button-raised"
+                                style={ buttonStyle }
+                                onClick={this.login.bind(this)}>
+                                Sign In
+                            </a>
+                        </div>
+                        <div className="col-25" />
                     </div>
-                </div>
-            </form>
+                    <div className="row">
+                        <div className="col-25" />
+                        <div className="col-50">
+                            <a
+                                className="button button-fill button-raised"
+                                style={ buttonStyle }
+                                onClick={this.register.bind(this)}>
+                                Register
+                            </a>
+                        </div>
+                        <div className="col-25" />
+                    </div>
+                </form>
+            </div>
         );
     }
 }

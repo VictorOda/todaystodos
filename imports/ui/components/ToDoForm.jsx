@@ -38,7 +38,7 @@ export default class ToDoForm extends Component {
                     <a
                         className="button button-fill button-raised"
                         style={ buttonStyle }
-                        type="submit">
+                        onClick={ this.handleSubmit.bind(this) }>
                         Add
                     </a>
                 </li>

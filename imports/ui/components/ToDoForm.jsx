@@ -12,6 +12,13 @@ export default class ToDoForm extends Component {
 
     render() {
         const buttonStyle = {
+            minHeight: 40,
+            fontWeight: "bold",
+            fontSize: "115%",
+            margin: "0px 0px 0px 10px"
+        };
+
+        const newButtonStyle = {
             minWidth: 80,
             minHeight: 40,
             fontWeight: "bold",
@@ -28,9 +35,12 @@ export default class ToDoForm extends Component {
                     <label className="item-input-wrapper"  style={itemStyle}>
                         <input type="text" placeholder="New To-Do..." ref="textInput"/>
                     </label>
-                    <button className="button button-small button-energized" type="submit" style={buttonStyle}>
+                    <a
+                        className="button button-fill button-raised"
+                        style={ buttonStyle }
+                        type="submit">
                         Add
-                    </button>
+                    </a>
                 </li>
             </form>
         );

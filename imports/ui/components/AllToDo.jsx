@@ -13,14 +13,15 @@ export default class AllToDo extends Component {
             paddingLeft: 6,
         };
         const textStyle = {
-            marginLeft: "20px",
-            verticalAlign: "-7px",
+            marginLeft: "15px",
+            verticalAlign: "-9px",
         };
         const buttonStylePlus = {
             float: "right",
             verticalAlign: "middle",
             margin: "2px 0",
-            color: "rgb(30, 177, 30)"
+            color: "rgb(30, 177, 30)",
+            width: "30px"
         };
         const buttonStyleMinus = {
             float: "right",

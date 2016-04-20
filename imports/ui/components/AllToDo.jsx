@@ -13,8 +13,13 @@ export default class AllToDo extends Component {
             paddingLeft: 6,
         };
         const textStyle = {
-            marginLeft: "15px",
-            verticalAlign: "-9px",
+            verticalAlign: "middle",
+            whiteSpace: "initial",
+            padding: "0px 10px",
+            display: "list-item"
+        };
+        const textBoxStyle = {
+            margin: "auto 0"
         };
         const buttonStylePlus = {
             float: "right",
@@ -32,15 +37,21 @@ export default class AllToDo extends Component {
 
         return (
             <li className="item" style={listItemStyle}>
-                <span className="text" style={textStyle}>{this.props.todo.text}</span>
-                <a
-                    className="button button-small button-icon icon ion-plus-circled"
-                    style={ buttonStylePlus }
-                    onClick={ this.props.transferToDo.bind(this, this.props.todo) } />
-                <a
-                    className="button button-small button-icon icon ion-minus-circled"
-                    style={ buttonStyleMinus }
-                    onClick={ this.props.removeToDo.bind(this, this.props.todo) } />
+                <div className="row no-gutter">
+                    <div className="col-75" style={ textBoxStyle }>
+                        <span className="text" style={textStyle}>{this.props.todo.text}</span>
+                    </div>
+                    <div className="col-25" style={ textBoxStyle }>
+                        <a
+                            className="button button-small button-icon icon ion-plus-circled"
+                            style={ buttonStylePlus }
+                            onClick={ this.props.transferToDo.bind(this, this.props.todo) } />
+                        <a
+                            className="button button-small button-icon icon ion-minus-circled"
+                            style={ buttonStyleMinus }
+                            onClick={ this.props.removeToDo.bind(this, this.props.todo) } />
+                    </div>
+                </div>
             </li>
         );
     }

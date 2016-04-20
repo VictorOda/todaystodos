@@ -23,9 +23,13 @@ export default class ToDo extends Component {
             verticalAlign: "middle"
         };
         const textStyleCompleted = {
-            textDecoration: "line-through"
+            textDecoration: "line-through",
+            whiteSpace: "initial",
+            display: "list-item"
         };
         const textStyleIncomplete = {
+            whiteSpace: "initial",
+            display: "list-item"
         };
 
         const isChecked = this.props.todo.checked ? "checked" : "";
@@ -33,10 +37,16 @@ export default class ToDo extends Component {
 
         return (
             <li className="item" style={listItemStyle}>
-                <label className="checkbox" style={labelStyle}>
-                    <input type="checkbox"  readOnly checked={isChecked} onClick={this.toggleChecked.bind(this)}/>
-                </label>
-                <span className="text" style={textStyle}>{this.props.todo.text}</span>
+                <div className="row no-gutter">
+                    <div className="col-10">
+                        <label className="checkbox" style={labelStyle}>
+                            <input type="checkbox"  readOnly checked={isChecked} onClick={this.toggleChecked.bind(this)}/>
+                        </label>
+                    </div>
+                    <div className="col-90">
+                        <span className="text" style={textStyle}>{this.props.todo.text}</span>
+                    </div>
+                </div>
             </li>
         );
     }

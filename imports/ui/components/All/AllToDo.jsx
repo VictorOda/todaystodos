@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component, PropTypes } from 'react';
 
-import { ToDos } from '../../api/todos.js';
-
 export default class AllToDo extends Component {
 
     render () {
@@ -56,7 +54,3 @@ export default class AllToDo extends Component {
         );
     }
 }
-
-AllToDo.PropTypes = {
-    todo: PropTypes.object.isRequired
-};

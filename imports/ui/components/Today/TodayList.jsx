@@ -1,12 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import ToDo from './ToDo.jsx';
 
-import { ToDos } from '../../api/todos.js';
+import { ToDos } from '../../../api/todos.js';
 
 export default class TodayList extends Component {
 

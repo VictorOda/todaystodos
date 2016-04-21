@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component, PropTypes } from 'react';
 
-import { ToDos } from '../../api/todos.js';
-
 export default class ToDo extends Component {
 
     toggleChecked() {
@@ -51,7 +49,3 @@ export default class ToDo extends Component {
         );
     }
 }
-
-ToDo.PropTypes = {
-    todo: PropTypes.object.isRequired
-};

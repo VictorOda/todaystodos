@@ -8,6 +8,7 @@ import Button from './Button.jsx';
 import ToDoForm from './ToDoForm.jsx';
 import ToDo from './ToDo.jsx';
 import AllToDo from './AllToDo.jsx';
+import TodayList from './TodayList.jsx';
 
 import { ToDos } from '../../api/todos.js';
 
@@ -59,16 +60,7 @@ export default class ToDoList extends Component {
     render() {
         return (
             <div>
-                <div className="card">
-                    <div className="card-header">Today</div>
-                    <div className="card-content">
-                        <div className="list-block">
-                            <ul>
-                                { this.renderTodaysToDos() }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <TodayList />
                 <Button value="It's A New Day!" newDay={ this.newDay.bind(this) }/>
                 <div className="card">
                     <div className="card-header">All</div>

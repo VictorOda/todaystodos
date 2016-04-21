@@ -6,9 +6,6 @@ import { ToDos } from '../../api/todos.js';
 export default class ToDo extends Component {
 
     toggleChecked() {
-        // ToDos.update(this.props.todo._id, {
-        //     $set: { checked: !this.props.todo.checked }
-        // });
         Meteor.call('todos.toggleChecked', this.props.todo);
     }
 
@@ -20,16 +17,19 @@ export default class ToDo extends Component {
             paddingLeft: 6
         };
         const labelStyle = {
-            verticalAlign: "middle"
+            verticalAlign: "middle",
+        };
+        const textDivStyle = {
+            margin: "auto 0",
         };
         const textStyleCompleted = {
             textDecoration: "line-through",
             whiteSpace: "initial",
-            display: "list-item"
+            display: "list-item",
         };
         const textStyleIncomplete = {
             whiteSpace: "initial",
-            display: "list-item"
+            display: "list-item",
         };
 
         const isChecked = this.props.todo.checked ? "checked" : "";
@@ -43,7 +43,7 @@ export default class ToDo extends Component {
                             <input type="checkbox"  readOnly checked={isChecked} onClick={this.toggleChecked.bind(this)}/>
                         </label>
                     </div>
-                    <div className="col-90">
+                    <div className="col-90" style={textDivStyle}>
                         <span className="text" style={textStyle}>{this.props.todo.text}</span>
                     </div>
                 </div>

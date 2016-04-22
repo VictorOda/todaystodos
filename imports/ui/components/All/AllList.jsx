@@ -35,9 +35,18 @@ export default class AllList extends Component {
     }
 
     render() {
+        const countStyle = {
+            float: "right"
+        };
+
         return (
             <div className="card">
-                <div className="card-header">All</div>
+                <div className="card-header">
+                    All
+                    <div style={ countStyle }>
+                        { this.props.todos.length }
+                    </div>
+                </div>
                 <div className="card-content">
                     <div className="list-block">
                         <ul>

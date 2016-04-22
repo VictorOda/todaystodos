@@ -6,7 +6,7 @@ import MainPage from '../../ui/pages/MainPage.jsx';
 import LoginPage from '../../ui/pages/LoginPage.jsx';
 
 import MainLayout from '../../ui/layouts/MainLayout.jsx';
-import LoginForm from '../../ui/components/LoginForm.jsx';
+import LoginForm from '../../ui/components/login/LoginForm.jsx';
 import ToDoList from '../../ui/components/ToDoList.jsx';
 
 export const renderRoutes = () => (

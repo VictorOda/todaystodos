@@ -5,8 +5,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import Button from './Button.jsx';
-import TodayList from './Today/TodayList.jsx';
-import AllList from './All/AllList.jsx';
+import TodayList from './today/TodayList.jsx';
+import AllList from './all/AllList.jsx';
 
 import { ToDos } from '../../api/todos.js';
 

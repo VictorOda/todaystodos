@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { Accounts } from 'meteor/accounts-base';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
+import ButtonCentered from './ButtonCentered.jsx';
+
 export default class ToDoForm extends Component {
 
     register (e) {
@@ -46,14 +48,6 @@ export default class ToDoForm extends Component {
 
     render () {
 
-        const buttonStyle = {
-            maxWidth: "300px",
-            margin: "5px",
-            fontWeight: "bold",
-            textAlign: "center",
-            lineHeight: "45px"
-        };
-
         return (
             <div className="content-block">
                 <form className="login">
@@ -65,30 +59,8 @@ export default class ToDoForm extends Component {
                             <input ref="password" type="password" placeholder="Password" />
                         </label>
                     </div>
-                    <div className="row">
-                        <div className="col-25" />
-                        <div className="col-50">
-                            <a
-                                className="button button-fill button-raised"
-                                style={ buttonStyle }
-                                onClick={this.login.bind(this)}>
-                                Sign In
-                            </a>
-                        </div>
-                        <div className="col-25" />
-                    </div>
-                    <div className="row">
-                        <div className="col-25" />
-                        <div className="col-50">
-                            <a
-                                className="button button-fill button-raised"
-                                style={ buttonStyle }
-                                onClick={this.register.bind(this)}>
-                                Register
-                            </a>
-                        </div>
-                        <div className="col-25" />
-                    </div>
+                    <ButtonCentered title="Log In" action={this.login.bind(this)} />
+                    <ButtonCentered title="Register" action={this.register.bind(this)} />
                 </form>
             </div>
         );
